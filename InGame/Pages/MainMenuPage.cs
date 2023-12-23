@@ -184,16 +184,16 @@ namespace ProjectZ.InGame.Pages
                     }
                 });
 
-                var exitButtonLayout = new InterfaceGravityLayout { Size = new Point(smallButtonWidth, buttonHeight) };
-                exitButtonLayout.AddElement(new InterfaceLabel("main_menu_exit") { Gravity = InterfaceElement.Gravities.Center });
+                var smallButtonLayout2 = new InterfaceGravityLayout { Size = new Point(smallButtonWidth, buttonHeight) };
+                smallButtonLayout2.AddElement(new InterfaceLabel("main_menu_quit") { Gravity = InterfaceElement.Gravities.Center });
                 _menuBottomBar.AddElement(new InterfaceButton
                 {
                     Size = new Point(smallButtonWidth, buttonHeight),
-                    InsideElement = exitButtonLayout,
+                    InsideElement = smallButtonLayout2,
                     Margin = new Point(smallButtonMargin, 2),
                     ClickFunction = element =>
                     {
-                        Game1.Instance.Exit();
+                        Game1.UiPageManager.ChangePage(typeof(QuitGamePage));
                     }
                 });
             }
