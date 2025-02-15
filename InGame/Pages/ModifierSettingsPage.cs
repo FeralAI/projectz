@@ -32,6 +32,19 @@ namespace ProjectZ.InGame.Pages
 
             modifierSettingsList.AddElement(contentLayout);
 
+            var toggleNoPickupDialogs = InterfaceToggle.GetToggleButton(
+                new Point(buttonWidth, 18),
+                new Point(5, 2),
+                "settings_modifier_no_pickup_dialogs",
+                GameSettings.NoPickupDialogs,
+                value =>
+                {
+                    GameSettings.NoPickupDialogs = value;
+                    Game1.GameManager.ItemManager.Load();
+                }
+            );
+            contentLayout.AddElement(toggleNoPickupDialogs);
+
             _bottomBar = new InterfaceListLayout() { Size = new Point(width, (int)(height * Values.MenuFooterSize)), Selectable = true, HorizontalMode = true };
             // back button
             _bottomBar.AddElement(new InterfaceButton(new Point(60, 20), new Point(2, 4), "settings_menu_back", element =>
