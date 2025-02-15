@@ -35,6 +35,7 @@ namespace ProjectZ.InGame.SaveLoad
             GameSettings.DamageMultiplier = saveManager.GetInt("DamageMultiplier", GameSettings.DamageMultiplier);
             GameSettings.NoHeartDrops = saveManager.GetBool("NoHeartDrops", GameSettings.NoHeartDrops);
             GameSettings.NoPickupDialogs = saveManager.GetBool("NoPickupDialogs", GameSettings.NoPickupDialogs);
+            GameSettings.WalkSpeed = saveManager.GetFloat("WalkSpeed", GameSettings.WalkSpeed);
 
             Values.ControllerDeadzone = saveManager.GetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             Game1.LanguageManager.CurrentLanguageIndex = saveManager.GetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);
@@ -64,6 +65,7 @@ namespace ProjectZ.InGame.SaveLoad
             saveManager.SetInt("DamageMultiplier", GameSettings.DamageMultiplier);
             saveManager.SetBool("NoHeartDrops", GameSettings.NoHeartDrops);
             saveManager.SetBool("NoPickupDialogs", GameSettings.NoPickupDialogs);
+            saveManager.SetFloat("WalkSpeed", GameSettings.WalkSpeed);
 
             saveManager.SetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             saveManager.SetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);

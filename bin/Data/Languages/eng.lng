@@ -63,6 +63,7 @@ settings_modifier_header Modifier Settings
 settings_modifier_damage Damage Multiplier:
 settings_modifier_no_hearts No Heart Drops
 settings_modifier_no_pickup_dialogs No Pickup Dialogs
+settings_modifier_walk_speed Walk Speed:
 
 settings_controls_header Control Settings
 settings_controls_keyboad Keyboard

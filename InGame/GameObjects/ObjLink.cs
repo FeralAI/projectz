@@ -40,6 +40,13 @@ namespace ProjectZ.InGame.GameObjects
             Frozen
         }
 
+        public static readonly List<float> WalkSpeedOptions = [
+            1.00f, 1.25f, 1.50f, 1.75f,
+            2.00f, 2.25f, 2.50f, 2.75f,
+            3.00f, 3.50f, 4.00f, 5.00f,
+        ];
+        public static readonly float MaxMoveSpeed = 5.0f;
+
         public State CurrentState;
 
         private List<GameObject> _bombList = new List<GameObject>();
@@ -51,9 +58,9 @@ namespace ProjectZ.InGame.GameObjects
         public float PosY => EntityPosition.Y;
         public float PosZ => EntityPosition.Z;
 
-        private const float WalkSpeed = 1.0f;
-        private const float WalkSpeedPoP = 20 / 16f;
-        private const float BootsRunningSpeed = 2.0f;
+        private float WalkSpeed = 1.0f;
+        private float WalkSpeedPoP = 1.25f;
+        private float BootsRunningSpeed = 2.0f;
         private const float SwimSpeed = 0.5f;
         private const float SwimSpeedA = 1.0f;
 
@@ -390,6 +397,7 @@ namespace ProjectZ.InGame.GameObjects
             _stunnedParticleSprite = Resources.GetSprite("stunned particle");
 
             CollisionBoxSize = new Point(8, 8);
+            SetWalkingSpeed(GameSettings.WalkSpeed);
 
             _body = new BodyComponent(EntityPosition, -4, -10, 8, 10, 8)
             {
@@ -4447,6 +4455,13 @@ namespace ProjectZ.InGame.GameObjects
         {
             Direction = direction;
             UpdateAnimation();
+        }
+
+        public void SetWalkingSpeed(float walkSpeed)
+        {
+            WalkSpeed = Math.Min(walkSpeed, MaxMoveSpeed);
+            WalkSpeedPoP = Math.Min(walkSpeed * 1.25f, MaxMoveSpeed); // +25%, cap at speed limit
+            BootsRunningSpeed = Math.Min(walkSpeed + 1.00f, MaxMoveSpeed);
         }
 
         public void PickUpItem(GameItemCollected itemCollected, bool showItem, bool showDialog = true, bool playSound = true)

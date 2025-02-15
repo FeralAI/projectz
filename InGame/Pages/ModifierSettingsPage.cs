@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using ProjectZ.InGame.Controls;
+using ProjectZ.InGame.GameObjects;
 using ProjectZ.InGame.Interface;
+using ProjectZ.InGame.Map;
 using ProjectZ.InGame.Things;
 
 namespace ProjectZ.InGame.Pages
@@ -21,9 +23,17 @@ namespace ProjectZ.InGame.Pages
 
             var contentLayout = new InterfaceListLayout { Size = new Point(width, (int)(height * Values.MenuContentSize)), Selectable = true, ContentAlignment = InterfaceElement.Gravities.Top };
 
+            contentLayout.AddElement(new InterfaceSlider(Resources.GameFont, "settings_modifier_walk_speed",
+                buttonWidth, new Point(1, 2), 0, ObjLink.WalkSpeedOptions.Count - 1, 1, ObjLink.WalkSpeedOptions.IndexOf(GameSettings.WalkSpeed),
+                index => {
+                    GameSettings.WalkSpeed = ObjLink.WalkSpeedOptions[index];
+                    MapManager.ObjLink.SetWalkingSpeed(GameSettings.WalkSpeed);
+                })
+            { SetString = number => " x" + GameSettings.WalkSpeed.ToString("0.00") });
+
             contentLayout.AddElement(new InterfaceSlider(Resources.GameFont, "settings_modifier_damage",
-            buttonWidth, new Point(1, 2), 0, 4, 1, GameSettings.DamageMultiplier,
-            number => { GameSettings.DamageMultiplier = number; })
+                buttonWidth, new Point(1, 2), 0, 4, 1, GameSettings.DamageMultiplier,
+                number => { GameSettings.DamageMultiplier = number; })
             { SetString = number => " x" + GameSettings.DamageMultiplier });
 
             var toggleNoHearts = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),

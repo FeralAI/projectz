@@ -1,5 +1,4 @@
-﻿
-namespace ProjectZ.InGame.Things
+﻿namespace ProjectZ.InGame.Things
 {
     class GameSettings
     {
@@ -19,6 +18,7 @@ namespace ProjectZ.InGame.Things
         public static int DamageMultiplier = 1;
         public static bool NoHeartDrops = false;
         public static bool NoPickupDialogs = false;
+        public static float WalkSpeed = 1f;
 
         private static int _musicVolume = 100;
         private static int _effectVolume = 100;
