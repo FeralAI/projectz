@@ -2,8 +2,6 @@
 
 This is the source code for ProjectZ, and *only* the source code -- assets (sprite sheets, sound effects etc.) must be provided by the user. The project builds with MonoGame 3.8.1.303, which is newer than the version ProjectZ 1.0.0 originally shipped with.
 
-Unlike the 1.0.0 version of ProjectZ, this repo will *not* publish as a single executable file, which appears to be an unsupported build configuration in MonoGame 3.8.1.303. This means the .NET assemblies ProjectZ uses will be included in builds.
-
 ## Requirements
 
 * .NET 6
@@ -15,4 +13,4 @@ Unlike the 1.0.0 version of ProjectZ, this repo will *not* publish as a single e
 
 * Clone repo somewhere.
 * Extract the original source archive (`source.7z md5: 4871f9fce7ae06d14aedbb33a88b18a8`) to the Source folder. The folder should contain a ProjectZ folder.
-* Building from Visual Studio 2022 will copy assets from the Source folder to the Content and Data folders automatically.
+* Run Publish on ProjectZ in from Visual Studio, or run `dotnet publish -c Release -p:"PublishProfile=FolderProfile"` from the command line, to run a release build and output a full package to the `Publish` folder.
