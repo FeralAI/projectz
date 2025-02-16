@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
+		<Version>1.1.0-alpha.1</Version>
 		<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 		<LangVersion>12.0</LangVersion>
 		<PublishReadyToRun>false</PublishReadyToRun>
