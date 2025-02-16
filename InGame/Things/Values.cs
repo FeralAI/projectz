@@ -103,8 +103,8 @@ namespace ProjectZ.InGame.Things
         public static int MinHeight = 128 * 2;  // 128
 
         public static double MenuHeaderSize = 0.15;
-        public static double MenuContentSize = 0.65;
-        public static double MenuFooterSize = 0.15;
+        public static double MenuContentSize = 0.675;
+        public static double MenuFooterSize = 0.175;
 
         public static int LetterWidth = 8;
         public static int LetterHeight = 8;
