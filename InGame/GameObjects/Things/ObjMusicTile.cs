@@ -11,7 +11,6 @@ namespace ProjectZ.InGame.GameObjects.Things
     {
         private string[,] _musicData;
         private string _lastTrack;
-        private float _transitionCount;
 
         public ObjMusicTile() : base("editor music") { }
 
