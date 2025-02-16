@@ -40,11 +40,12 @@ namespace ProjectZ.InGame.GameObjects
             Frozen
         }
 
-        public static readonly List<float> WalkSpeedOptions = [
+        public static readonly List<float> WalkSpeedOptions = new()
+        {
             1.00f, 1.25f, 1.50f, 1.75f,
             2.00f, 2.25f, 2.50f, 2.75f,
             3.00f, 3.50f, 4.00f, 5.00f,
-        ];
+        };
         public static readonly float MaxMoveSpeed = 5.0f;
 
         public State CurrentState;
