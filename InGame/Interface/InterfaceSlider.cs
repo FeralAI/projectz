@@ -133,6 +133,7 @@ namespace ProjectZ.InGame.Interface
                 _animationStepStart = _stepWidth * _lastStep;
 
                 NumberChanged?.Invoke(Start + CurrentStep);
+                _updateText = true;
 
                 return InputEventReturn.Something;
             }
@@ -147,7 +148,8 @@ namespace ProjectZ.InGame.Interface
                 _animationStepStart = _stepWidth * _lastStep;
 
                 NumberChanged?.Invoke(Start + CurrentStep);
-                
+                _updateText = true;
+
                 return InputEventReturn.Something;
             }
             
