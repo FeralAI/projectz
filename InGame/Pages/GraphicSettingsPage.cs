@@ -11,6 +11,7 @@ namespace ProjectZ.InGame.Pages
         private readonly InterfaceListLayout _bottomBar;
         private readonly InterfaceListLayout _toggleFullscreen;
         private InterfaceSlider _uiScaleSlider;
+        private int _toggleHeight = 16;
 
         //private InterfaceSlider _uiScaleSlider;
 
@@ -45,7 +46,7 @@ namespace ProjectZ.InGame.Pages
             { SetString = number => GameSettings.UiScale == 0 ? "auto" : " x" + number };
             contentLayout.AddElement(_uiScaleSlider);
 
-            _toggleFullscreen = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
+            _toggleFullscreen = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
                 "settings_game_fullscreen_mode", GameSettings.IsFullscreen,
                 newState => {
                     Game1.ToggleFullscreen();
@@ -53,16 +54,11 @@ namespace ProjectZ.InGame.Pages
                 });
             contentLayout.AddElement(_toggleFullscreen);
 
-            var toggleFullscreenWindowed = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
+            var toggleFullscreenWindowed = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
                 "settings_game_fullscreen_windowed", GameSettings.BorderlessWindowed, newState => { Game1.SwitchFullscreenWindowedSetting(); });
             contentLayout.AddElement(toggleFullscreenWindowed);
 
-            // not sure why this should be an option; but if this should be settable then we need to still enable circular shadows  (e.g. under the player)
-            //var shadowToggle = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
-            //    "settings_graphics_shadow", GameSettings.EnableShadows, newState => GameSettings.EnableShadows = newState);
-            //contentLayout.AddElement(shadowToggle);
-
-            var toggleFpsLock = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
+            var toggleFpsLock = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
                 "settings_graphics_fps_lock", GameSettings.LockFps, newState =>
                 {
                     GameSettings.LockFps = newState;
@@ -70,9 +66,14 @@ namespace ProjectZ.InGame.Pages
                 });
             contentLayout.AddElement(toggleFpsLock);
 
-            var smoothCameraToggle = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
+            var smoothCameraToggle = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
                 "settings_game_change_smooth_camera", GameSettings.SmoothCamera, newState => { GameSettings.SmoothCamera = newState; });
             contentLayout.AddElement(smoothCameraToggle);
+
+            // not sure why this should be an option; but if this should be settable then we need to still enable circular shadows  (e.g. under the player)
+            var shadowToggle = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
+                "settings_graphics_shadow", GameSettings.EnableShadows, newState => GameSettings.EnableShadows = newState);
+            contentLayout.AddElement(shadowToggle);
 
             _graphicSettingsLayout.AddElement(contentLayout);
 
