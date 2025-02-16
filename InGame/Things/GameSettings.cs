@@ -1,4 +1,6 @@
-﻿namespace ProjectZ.InGame.Things
+﻿using System.Linq;
+
+namespace ProjectZ.InGame.Things
 {
     class GameSettings
     {
@@ -7,6 +9,7 @@
 
         public static bool ItemsOnRight = false;
         public static bool SwapButtons = false;
+        public static Resources.SpriteFontName FontName = Resources.SpriteFontName.smallFont;
 
         public static bool EnableShadows = true;
         public static bool LockFps = true;

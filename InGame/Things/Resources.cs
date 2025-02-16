@@ -22,6 +22,18 @@ namespace ProjectZ.InGame.Things
             }
         }
 
+        public static readonly Dictionary<SpriteFontName, string> GameFontNames = new()
+        {
+            { SpriteFontName.smallFont, "Original" },
+            { SpriteFontName.smallFontOld, "Monospace" },
+        };
+
+        public enum SpriteFontName
+        {
+            smallFont,
+            smallFontOld,
+        }
+
         public static Effect RoundedCornerEffect;
 
         public static Effect BlurEffect;
@@ -54,6 +66,7 @@ namespace ProjectZ.InGame.Things
 
         public static SpriteFont EditorFont, EditorFontMonoSpace, EditorFontSmallMonoSpace;
         public static SpriteFont GameFont, GameHeaderFont;
+        public static Dictionary<SpriteFontName, SpriteFont> GameFonts = [];
         public static SpriteFont FontCredits, FontCreditsHeader;
 
         public static Texture2D EditorEyeOpen, EditorEyeClosed, EditorIconDelete;
@@ -142,8 +155,7 @@ namespace ProjectZ.InGame.Things
 
             EditorFontSmallMonoSpace = content.Load<SpriteFont>("Fonts/editor small mono font");
 
-            GameFont = content.Load<SpriteFont>("Fonts/smallFont");
-            GameFont.LineSpacing = GameFontHeight;
+            LoadGameFonts(content);
 
             GameHeaderFont = content.Load<SpriteFont>("Fonts/newHeaderFont");
 
@@ -336,6 +348,29 @@ namespace ProjectZ.InGame.Things
                         TilesetSizes.Add(split[0], value);
                 }
             }
+        }
+
+        public static void LoadGameFonts(ContentManager content)
+        {
+            var fontList = GameFontNames.Keys.ToList();
+
+            for (int i = 0; i < fontList.Count; i++)
+            {
+                SpriteFontName fontName = fontList[i];
+                SpriteFont tempSF = content.Load<SpriteFont>($"Fonts/{fontName}");
+                tempSF.LineSpacing = GameFontHeight;
+                GameFonts.Add(fontName, tempSF);
+
+                if (i == 0 || fontName == GameSettings.FontName)
+                {
+                    SetGameFont(fontName);
+                }
+            }
+        }
+
+        public static void SetGameFont(SpriteFontName fontName)
+        {
+            GameFont = GameFonts.GetValueOrDefault(fontName);
         }
     }
 }

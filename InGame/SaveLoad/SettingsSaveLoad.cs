@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using ProjectZ.InGame.Controls;
 using ProjectZ.InGame.Things;
+using System;
 
 namespace ProjectZ.InGame.SaveLoad
 {
@@ -38,6 +39,9 @@ namespace ProjectZ.InGame.SaveLoad
             GameSettings.WalkSpeed = saveManager.GetFloat("WalkSpeed", GameSettings.WalkSpeed);
             GameSettings.SwapButtons = saveManager.GetBool("SwapButtons", GameSettings.SwapButtons);
 
+            string dialogFontNameStr = saveManager.GetString("FontName", Resources.SpriteFontName.smallFont.ToString());
+            GameSettings.FontName = Enum.Parse<Resources.SpriteFontName>(dialogFontNameStr);
+
             Values.ControllerDeadzone = saveManager.GetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             Game1.LanguageManager.CurrentLanguageIndex = saveManager.GetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);
 
@@ -68,6 +72,8 @@ namespace ProjectZ.InGame.SaveLoad
             saveManager.SetBool("NoPickupDialogs", GameSettings.NoPickupDialogs);
             saveManager.SetFloat("WalkSpeed", GameSettings.WalkSpeed);
             saveManager.SetBool("SwapButtons", GameSettings.SwapButtons);
+
+            saveManager.SetString("FontName", GameSettings.FontName.ToString());
 
             saveManager.SetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             saveManager.SetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);

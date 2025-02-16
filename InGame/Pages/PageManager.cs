@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectZ.InGame.Controls;
@@ -64,6 +65,22 @@ namespace ProjectZ.InGame.Pages
             AddPage(new GameMenuPage(_width, _height));
             AddPage(new ExitGamePage(_width, _height));
             AddPage(new GameOverPage(_width, _height));
+        }
+
+        public void Reload()
+        {
+            var pageTypes = PageStack.ToList();
+
+            PageStack.Clear();
+            InsideElement.Clear();
+            Load();
+
+            pageTypes.Reverse();
+            foreach (var pageType in pageTypes)
+            {
+                PageStack.Insert(0, pageType);
+                InsideElement[pageType].OnLoad(null);
+            }
         }
 
         public void UpdateControlSettingsPage()

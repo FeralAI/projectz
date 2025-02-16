@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using ProjectZ.InGame.Controls;
 using ProjectZ.InGame.Interface;
@@ -29,6 +30,10 @@ namespace ProjectZ.InGame.Pages
             var toggleAutosave = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
                 "settings_game_autosave", GameSettings.Autosave, newState => { GameSettings.Autosave = newState; });
             contentLayout.AddElement(toggleAutosave);
+
+            var fontSelect = new InterfaceButton(new Point(buttonWidth, 18), new Point(0, 2),
+                $"settings_game_dialog_font|: {Resources.GameFonts[GameSettings.FontName]}", PressButtonDialogFontChange);
+            contentLayout.AddElement(fontSelect);
 
             var toggleItemSlotSide = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
                 "settings_game_items_on_right", GameSettings.ItemsOnRight, newState => { GameSettings.ItemsOnRight = newState; });
@@ -87,6 +92,17 @@ namespace ProjectZ.InGame.Pages
         public void PressButtonLanguageChange(InterfaceElement element)
         {
             Game1.LanguageManager.ToggleLanguage();
+        }
+
+        public void PressButtonDialogFontChange(InterfaceElement element)
+        {
+            var fontList = Resources.GameFontNames.Keys.ToList();
+            int index = fontList.IndexOf(GameSettings.FontName);
+            index = ++index % Resources.GameFontNames.Count;
+
+            GameSettings.FontName = fontList[index];
+            Resources.SetGameFont(GameSettings.FontName);
+            Game1.UiPageManager.Reload(); // Reload pages to pick up new font
         }
     }
 }
