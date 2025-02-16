@@ -39,7 +39,7 @@ namespace ProjectZ.InGame.Pages
 
             var buttonWidth = 65;
             var lableWidth = 90;
-            var lableHeight = 12;
+            var lableHeight = 10;
             var headerHeight = 14;
 
             var remapHeader = new InterfaceListLayout { AutoSize = true, Margin = new Point(0, 1), HorizontalMode = true, CornerRadius = 0, Color = Values.MenuButtonColor };
