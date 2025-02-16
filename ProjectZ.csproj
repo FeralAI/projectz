@@ -19,14 +19,17 @@
 		<Compile Remove="Content\bin\**" />
 		<Compile Remove="Content\obj\**" />
 		<Compile Remove="Fix\**" />
+		<Compile Remove="Publish\**" />
 		<Compile Remove="Source\**" />
 		<EmbeddedResource Remove="Content\bin\**" />
 		<EmbeddedResource Remove="Content\obj\**" />
 		<EmbeddedResource Remove="Fix\**" />
+		<EmbeddedResource Remove="Publish\**" />
 		<EmbeddedResource Remove="Source\**" />
 		<None Remove="Content\bin\**" />
 		<None Remove="Content\obj\**" />
 		<None Remove="Fix\**" />
+		<None Remove="Publish\**" />
 		<None Remove="Source\**" />
 	</ItemGroup>
 	<ItemGroup>
