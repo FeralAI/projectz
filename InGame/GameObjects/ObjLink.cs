@@ -40,13 +40,8 @@ namespace ProjectZ.InGame.GameObjects
             Frozen
         }
 
-        public static readonly List<float> WalkSpeedOptions = new()
-        {
-            1.00f, 1.25f, 1.50f, 1.75f,
-            2.00f, 2.25f, 2.50f, 2.75f,
-            3.00f, 3.50f, 4.00f, 5.00f,
-        };
-        public static readonly float MaxMoveSpeed = 5.0f;
+        public static readonly List<float> WalkSpeedOptions = new() { 1.00f, 1.25f, 1.50f, 1.75f, 2.00f, 2.25f, 2.50f, 2.75f, 3.00f };
+        public static readonly float MaxMoveSpeed = 3.0f;
 
         public State CurrentState;
 
@@ -4460,9 +4455,9 @@ namespace ProjectZ.InGame.GameObjects
 
         public void SetWalkingSpeed(float walkSpeed)
         {
-            WalkSpeed = Math.Min(walkSpeed, MaxMoveSpeed);
-            WalkSpeedPoP = Math.Min(walkSpeed * 1.25f, MaxMoveSpeed); // +25%, cap at speed limit
-            BootsRunningSpeed = Math.Min(walkSpeed + 1.00f, MaxMoveSpeed);
+            WalkSpeed = Math.Max(Math.Min(walkSpeed, MaxMoveSpeed), 1.0f);
+            WalkSpeedPoP = Math.Max(Math.Min(walkSpeed + ((int)Math.Round(walkSpeed) * 0.25f), MaxMoveSpeed), 1.25f);
+            BootsRunningSpeed = Math.Max(Math.Min(walkSpeed + 1.00f, MaxMoveSpeed), 2.0f);
         }
 
         public void PickUpItem(GameItemCollected itemCollected, bool showItem, bool showDialog = true, bool playSound = true)
