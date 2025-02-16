@@ -27,13 +27,13 @@ namespace ProjectZ.InGame.Pages
 
             contentLayout.AddElement(new InterfaceButton(new Point(buttonWidth, 18), new Point(0, 2), "settings_game_language", PressButtonLanguageChange));
 
+            var fontSelect = new InterfaceButton(new Point(buttonWidth, 18), new Point(0, 2),
+                $"settings_game_dialog_font|: {Resources.GameFontNames[GameSettings.FontName]}", PressButtonDialogFontChange);
+            contentLayout.AddElement(fontSelect);
+
             var toggleAutosave = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
                 "settings_game_autosave", GameSettings.Autosave, newState => { GameSettings.Autosave = newState; });
             contentLayout.AddElement(toggleAutosave);
-
-            var fontSelect = new InterfaceButton(new Point(buttonWidth, 18), new Point(0, 2),
-                $"settings_game_dialog_font|: {Resources.GameFonts[GameSettings.FontName]}", PressButtonDialogFontChange);
-            contentLayout.AddElement(fontSelect);
 
             var toggleItemSlotSide = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
                 "settings_game_items_on_right", GameSettings.ItemsOnRight, newState => { GameSettings.ItemsOnRight = newState; });

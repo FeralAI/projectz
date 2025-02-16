@@ -59,6 +59,7 @@ settings_game_fullscreen_windowed Borderless Windowed
 settings_game_fullscreen_mode Fullscreen
 settings_game_items_on_right Items On Right
 settings_game_swap_buttons Swap Button Layout
+settings_game_dialog_font Font
 
 settings_modifier_header Modifier Settings
 settings_modifier_damage Damage Multiplier:
