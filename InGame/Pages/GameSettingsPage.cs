@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using ProjectZ.InGame.Controls;
 using ProjectZ.InGame.Interface;
+using ProjectZ.InGame.Overlay;
 using ProjectZ.InGame.Things;
 
 namespace ProjectZ.InGame.Pages
@@ -9,6 +11,7 @@ namespace ProjectZ.InGame.Pages
     class GameSettingsPage : InterfacePage
     {
         private readonly InterfaceListLayout _bottomBar;
+        private DateTime _nextControlCheck = DateTime.MinValue;
 
         public GameSettingsPage(int width, int height)
         {
@@ -31,6 +34,22 @@ namespace ProjectZ.InGame.Pages
                 "settings_game_items_on_right", GameSettings.ItemsOnRight, newState => { GameSettings.ItemsOnRight = newState; });
             contentLayout.AddElement(toggleItemSlotSide);
 
+            var swapButtons = InterfaceToggle.GetToggleButton(
+                new Point(buttonWidth, 18),
+                new Point(5, 2),
+                "settings_game_swap_buttons",
+                GameSettings.SwapButtons,
+                newState =>
+                {
+                    _nextControlCheck = DateTime.Now.AddMilliseconds(500); // Small delay to prevent menu close on change
+                    GameSettings.SwapButtons = newState;
+                    ControlHandler.SetConfirmCancelButtons();
+                    InventoryOverlay.UpdateItemSlotStrings();
+                    Game1.UiPageManager.UpdateControlSettingsPage();
+                }
+            );
+            contentLayout.AddElement(swapButtons);
+
             gameSettingsList.AddElement(contentLayout);
 
             _bottomBar = new InterfaceListLayout() { Size = new Point(width, (int)(height * Values.MenuFooterSize)), Selectable = true, HorizontalMode = true };
@@ -50,7 +69,7 @@ namespace ProjectZ.InGame.Pages
             base.Update(pressedButtons, gameTime);
 
             // close the page
-            if (ControlHandler.ButtonPressed(CButtons.B))
+            if (_nextControlCheck <= DateTime.Now && ControlHandler.ButtonPressed(ControlHandler.CancelButton))
                 Game1.UiPageManager.PopPage();
         }
 

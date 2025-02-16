@@ -266,7 +266,7 @@ namespace ProjectZ.InGame.Screens
 #endif
 
             if (Game1.FinishedLoading &&
-                (ControlHandler.ButtonPressed(CButtons.A) || ControlHandler.ButtonPressed(CButtons.Start)))
+                (ControlHandler.ButtonPressed(ControlHandler.ConfirmButton) || ControlHandler.ButtonPressed(CButtons.Start)))
                 Game1.ScreenManager.ChangeScreen(Values.ScreenNameMenu);
 
             if (!Game1.FinishedLoading)
