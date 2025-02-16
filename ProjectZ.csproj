@@ -20,17 +20,14 @@
 		<Compile Remove="Content\obj\**" />
 		<Compile Remove="Fix\**" />
 		<Compile Remove="Publish\**" />
-		<Compile Remove="Source\**" />
 		<EmbeddedResource Remove="Content\bin\**" />
 		<EmbeddedResource Remove="Content\obj\**" />
 		<EmbeddedResource Remove="Fix\**" />
 		<EmbeddedResource Remove="Publish\**" />
-		<EmbeddedResource Remove="Source\**" />
 		<None Remove="Content\bin\**" />
 		<None Remove="Content\obj\**" />
 		<None Remove="Fix\**" />
 		<None Remove="Publish\**" />
-		<None Remove="Source\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove=".gitignore" />
@@ -47,6 +44,12 @@
 		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
 		<PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
 		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Source\**" />
+		<Content Remove="Source\**" />
+		<EmbeddedResource Remove="Source\**" />
+		<None Remove="Source\**" />
 	</ItemGroup>
 	<PropertyGroup>
 		<StartupObject>ProjectZ.Program</StartupObject>
@@ -74,7 +77,7 @@
 		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\*.gbs&quot; &quot;$(TargetDir)Data&quot;" />
 		<Exec Command="echo F|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\Languages\dialog_eng.lng&quot; &quot;$(TargetDir)Data\Languages\dialog_eng.lng&quot;" />
 	</Target>
-	<Target Name="PreContentBuild" AfterTargets="Publish">
+	<Target Name="CopyContentPublish" AfterTargets="Publish">
 		<Exec Command="echo D|xcopy /y /d /E &quot;$(SolutionDir)Source\ProjectZ\Content\*.png&quot; &quot;$(PublishDir)Content&quot;" />
 		<Exec Command="echo D|xcopy /y /d /E &quot;$(SolutionDir)Source\ProjectZ\Content\*.wav&quot; &quot;$(PublishDir)Content&quot;" />
 		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)bin\Data\&quot; &quot;$(PublishDir)Data&quot;" />
