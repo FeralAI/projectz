@@ -1,8 +1,7 @@
 # Folders
 .vs/
 obj/
-bin/Debug
-bin/Release
+bin
 Content/bin/
 Content/obj/
 Source/ProjectZ/
@@ -12,4 +11,6 @@ Source/ProjectZ/
 *.wav
 *.ico
 # Other assets
-bin/Data/Languages/dialog_eng.lng
+Data/Languages/dialog_eng.lng
+/Publish
+*.user
