@@ -97,5 +97,6 @@
 		<Delete Files="$(PublishDir)/Link's Awakening DX HD.pdb" />
 		<Delete Files="$(PublishDir)/nvtt.dll" />
 		<Delete Files="$(PublishDir)/PVRTexLibWrapper.dll" />
+		<RemoveDir Directories="$(PublishDir)/Content/bin/;$(PublishDir)/Content/obj/" />
 	</Target>
 </Project>
