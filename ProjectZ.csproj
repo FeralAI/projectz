@@ -88,8 +88,6 @@
 		<Copy SourceFiles="@(DialogEng)" DestinationFolder="$(TargetDir)Data\Languages\" />
 	</Target>
 	<Target Name="CopyContentPublish" AfterTargets="Publish">
-		<Copy SourceFiles="@(ContentPng)" DestinationFolder="$(PublishDir)Content\%(RecursiveDir)" />
-		<Copy SourceFiles="@(ContentWav)" DestinationFolder="$(PublishDir)Content\%(RecursiveDir)" />
 		<Copy SourceFiles="@(DataFolder)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
 		<Copy SourceFiles="@(DataPng)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
 		<Copy SourceFiles="@(DataGbs)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
