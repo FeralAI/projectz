@@ -4455,9 +4455,9 @@ namespace ProjectZ.InGame.GameObjects
 
         public void SetWalkingSpeed(float walkSpeed)
         {
-            WalkSpeed = Math.Max(Math.Min(walkSpeed, MaxMoveSpeed), 1.0f);
-            WalkSpeedPoP = Math.Max(Math.Min(walkSpeed + ((int)Math.Round(walkSpeed) * 0.25f), MaxMoveSpeed), 1.25f);
-            BootsRunningSpeed = Math.Max(Math.Min(walkSpeed + 1.00f, MaxMoveSpeed), 2.0f);
+            WalkSpeed = MathHelper.Clamp(walkSpeed, 1.0f, MaxMoveSpeed);
+            WalkSpeedPoP = MathHelper.Clamp(walkSpeed + ((int)Math.Round(walkSpeed) * 0.25f), 1.25f, MaxMoveSpeed);
+            BootsRunningSpeed = MathHelper.Clamp(walkSpeed + 1.00f, 2.0f, MaxMoveSpeed);
         }
 
         public void PickUpItem(GameItemCollected itemCollected, bool showItem, bool showDialog = true, bool playSound = true)
