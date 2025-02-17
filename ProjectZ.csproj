@@ -92,7 +92,6 @@
 		<Copy SourceFiles="@(DataPng)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
 		<Copy SourceFiles="@(DataGbs)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
 		<Copy SourceFiles="@(DialogEng)" DestinationFolder="$(PublishDir)Data\Languages\" />
-		<RemoveDir Directories="$(PublishDir)/Content/bin/;$(PublishDir)/Content/obj/" />
 	</Target>
 	<Target Name="CleanPublish" AfterTargets="Publish">
 		<Delete Files="$(PublishDir)/assimp.dll" />
