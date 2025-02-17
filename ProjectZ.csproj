@@ -69,22 +69,32 @@
 	<Target Name="RemovePreviousPublish" BeforeTargets="Build">
 		<RemoveDir Directories="$(PublishDir)"></RemoveDir>
 	</Target>
+	<ItemGroup>
+		<AppIcon Include="$(SolutionDir)Source\ProjectZ\Resources\Icon.ico" />
+		<ContentPng Include="$(SolutionDir)Source\ProjectZ\Content\**\*.png" />
+		<ContentWav Include="$(SolutionDir)Source\ProjectZ\Content\**\*.wav" />
+		<DataFolder Include="$(SolutionDir)bin\Data\**\*.*" />
+		<DataPng Include="$(SolutionDir)Source\ProjectZ\bin\Data\**\*.png" />
+		<DataGbs Include="$(SolutionDir)Source\ProjectZ\bin\Data\**\*.gbs" />
+		<DialogEng Include="$(SolutionDir)Source\ProjectZ\bin\Data\Languages\dialog_eng.lng" />
+	</ItemGroup>
 	<Target Name="PreContentBuild" BeforeTargets="RunContentBuilder">
-		<Exec Command="echo D|xcopy /y /d /E &quot;$(SolutionDir)Source\ProjectZ\Content\*.png&quot; &quot;$(SolutionDir)Content&quot;" />
-		<Exec Command="echo D|xcopy /y /d /E &quot;$(SolutionDir)Source\ProjectZ\Content\*.wav&quot; &quot;$(SolutionDir)Content&quot;" />
-		<Exec Command="echo F|xcopy /y /d &quot;$(SolutionDir)Source\ProjectZ\Resources\Icon.ico&quot; &quot;$(SolutionDir)Resources\Icon.ico&quot;" />
-		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)bin\Data\&quot; &quot;$(TargetDir)Data&quot;" />
-		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\*.png&quot; &quot;$(TargetDir)Data&quot;" />
-		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\*.gbs&quot; &quot;$(TargetDir)Data&quot;" />
-		<Exec Command="echo F|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\Languages\dialog_eng.lng&quot; &quot;$(TargetDir)Data\Languages\dialog_eng.lng&quot;" />
+		<Copy SourceFiles="@(AppIcon)" DestinationFolder="$(SolutionDir)Resources\" />
+		<Copy SourceFiles="@(ContentPng)" DestinationFolder="$(SolutionDir)Content\%(RecursiveDir)" />
+		<Copy SourceFiles="@(ContentWav)" DestinationFolder="$(SolutionDir)Content\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DataFolder)" DestinationFolder="$(TargetDir)Data\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DataPng)" DestinationFolder="$(TargetDir)Data\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DataGbs)" DestinationFolder="$(TargetDir)Data\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DialogEng)" DestinationFolder="$(TargetDir)Data\Languages\" />
 	</Target>
 	<Target Name="CopyContentPublish" AfterTargets="Publish">
-		<Exec Command="echo D|xcopy /y /d /E &quot;$(SolutionDir)Source\ProjectZ\Content\*.png&quot; &quot;$(PublishDir)Content&quot;" />
-		<Exec Command="echo D|xcopy /y /d /E &quot;$(SolutionDir)Source\ProjectZ\Content\*.wav&quot; &quot;$(PublishDir)Content&quot;" />
-		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)bin\Data\&quot; &quot;$(PublishDir)Data&quot;" />
-		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\*.png&quot; &quot;$(PublishDir)Data&quot;" />
-		<Exec Command="echo D|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\*.gbs&quot; &quot;$(PublishDir)Data&quot;" />
-		<Exec Command="echo F|xcopy /y /E &quot;$(SolutionDir)Source\ProjectZ\bin\Data\Languages\dialog_eng.lng&quot; &quot;$(PublishDir)Data\Languages\dialog_eng.lng&quot;" />
+		<Copy SourceFiles="@(ContentPng)" DestinationFolder="$(PublishDir)Content\%(RecursiveDir)" />
+		<Copy SourceFiles="@(ContentWav)" DestinationFolder="$(PublishDir)Content\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DataFolder)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DataPng)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DataGbs)" DestinationFolder="$(PublishDir)Data\%(RecursiveDir)" />
+		<Copy SourceFiles="@(DialogEng)" DestinationFolder="$(PublishDir)Data\Languages\" />
+		<RemoveDir Directories="$(PublishDir)/Content/bin/;$(PublishDir)/Content/obj/" />
 	</Target>
 	<Target Name="CleanPublish" AfterTargets="Publish">
 		<Delete Files="$(PublishDir)/assimp.dll" />
@@ -97,6 +107,5 @@
 		<Delete Files="$(PublishDir)/Link's Awakening DX HD.pdb" />
 		<Delete Files="$(PublishDir)/nvtt.dll" />
 		<Delete Files="$(PublishDir)/PVRTexLibWrapper.dll" />
-		<RemoveDir Directories="$(PublishDir)/Content/bin/;$(PublishDir)/Content/obj/" />
 	</Target>
 </Project>
