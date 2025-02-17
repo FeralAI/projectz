@@ -37,7 +37,7 @@ namespace ProjectZ.InGame.Pages
             { SetString = number => GameSettings.GameScale == 11 ? "auto" : " x" + (number < 1 ? "1/" + (2 - number) : number.ToString()) });
 
             _uiScaleSlider = new InterfaceSlider(Resources.GameFont, "settings_graphics_ui_scale",
-                buttonWidth, new Point(1, 2), 0, Game1.ScreenScale - 1, 1, GameSettings.UiScale,
+                buttonWidth, new Point(1, 2), 0, Game1.ScreenScale, 1, GameSettings.UiScale,
                 number =>
                 {
                     GameSettings.UiScale = number;
@@ -129,8 +129,8 @@ namespace ProjectZ.InGame.Pages
 
         private void UpdateScaleSlider()
         {
-            GameSettings.UiScale = MathHelper.Clamp(GameSettings.UiScale, 0, Game1.ScreenScale - 1);
-            _uiScaleSlider.UpdateStepSize(0, Game1.ScreenScale - 1, 1);
+            GameSettings.UiScale = MathHelper.Clamp(GameSettings.UiScale, 0, Game1.ScreenScale);
+            _uiScaleSlider.UpdateStepSize(0, Game1.ScreenScale, 1);
         }
     }
 }
