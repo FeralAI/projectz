@@ -46,6 +46,15 @@ namespace ProjectZ.InGame.Pages
             { SetString = number => GameSettings.UiScale == 0 ? "auto" : " x" + number };
             contentLayout.AddElement(_uiScaleSlider);
 
+            contentLayout.AddElement(new InterfaceSlider(Resources.GameFont, "settings_graphics_shadow",
+                buttonWidth, new Point(1, 2), 0, 100, 5, (int)(GameSettings.ShadowOpacity * 100),
+                number =>
+                {
+                    GameSettings.ShadowOpacity = number / 100.0f;
+                    GameSettings.EnableShadows = number > 0;
+                })
+            { SetString = number => GameSettings.ShadowOpacity == 0 ? " off" : " " + number + "%" });
+
             _toggleFullscreen = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
                 "settings_game_fullscreen_mode", GameSettings.IsFullscreen,
                 newState => {
@@ -69,11 +78,6 @@ namespace ProjectZ.InGame.Pages
             var smoothCameraToggle = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
                 "settings_game_change_smooth_camera", GameSettings.SmoothCamera, newState => { GameSettings.SmoothCamera = newState; });
             contentLayout.AddElement(smoothCameraToggle);
-
-            // not sure why this should be an option; but if this should be settable then we need to still enable circular shadows  (e.g. under the player)
-            var shadowToggle = InterfaceToggle.GetToggleButton(new Point(buttonWidth, _toggleHeight), new Point(5, 2),
-                "settings_graphics_shadow", GameSettings.EnableShadows, newState => GameSettings.EnableShadows = newState);
-            contentLayout.AddElement(shadowToggle);
 
             _graphicSettingsLayout.AddElement(contentLayout);
 

@@ -12,6 +12,7 @@ namespace ProjectZ.InGame.Things
         public static Resources.SpriteFontName FontName = Resources.SpriteFontName.smallFont;
 
         public static bool EnableShadows = true;
+        public static float ShadowOpacity = 0.55f;
         public static bool LockFps = true;
         public static bool Autosave = true;
         public static bool SmoothCamera = true;
