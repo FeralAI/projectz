@@ -157,7 +157,7 @@ namespace ProjectZ.InGame.GameObjects.Dungeon
             _sprite.SpriteEffect = _direction.X < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             // collision with the player
-            if (_collectionCooldown < 0 && MapManager.ObjLink.PlayerRectangle.Intersects(_collectionBox.Box.Rectangle()))
+            if (_collectionCooldown < 0 && (MapManager.ObjLink.PlayerRectangle.Intersects(_collectionBox.Box.Rectangle()) || MapManager.ObjLink.SwordDamageBox.Intersects(_collectionBox.Box)))
                 CollectFairy();
         }
 
