@@ -2648,7 +2648,7 @@ namespace ProjectZ.InGame.GameObjects
 
         private void HoldStoneLifter()
         {
-            if (CurrentState != State.Idle)
+            if (CurrentState != State.Idle && CurrentState != State.Pushing)
                 return;
 
             GameObject grabbedObject = null;
