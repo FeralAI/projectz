@@ -267,6 +267,7 @@ namespace ProjectZ.InGame.GameObjects
         private ObjBoomerang _boomerang = new ObjBoomerang();
         private Vector2[] _boomerangOffset;
         private Vector2[] _arrowOffset;
+        private int _itemIndex;
         public bool HasFlippers;
 
         // arrow
@@ -2322,14 +2323,13 @@ namespace ProjectZ.InGame.GameObjects
                 {
                     for (var i = 0; i < Values.HandItemSlots; i++)
                     {
-                        if (Game1.GameManager.Equipment[i] != null &&
-                            ControlHandler.ButtonPressed((CButtons)((int)CButtons.A * Math.Pow(2, i))))
-                            UseItem(Game1.GameManager.Equipment[i]);
+                        _itemIndex = Game1.GameManager.EquipmentUseOrder[i];
 
-                        if (Game1.GameManager.Equipment[i] != null &&
-                            ControlHandler.ButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, i))))
-                            HoldItem(Game1.GameManager.Equipment[i],
-                                ControlHandler.LastButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, i))));
+                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonPressed((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))))
+                            UseItem(Game1.GameManager.Equipment[_itemIndex]);
+
+                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))))
+                            HoldItem(Game1.GameManager.Equipment[_itemIndex], ControlHandler.LastButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))));
                     }
                 }
             }

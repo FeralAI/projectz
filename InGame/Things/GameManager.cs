@@ -76,6 +76,7 @@ namespace ProjectZ.InGame.Things
 
         public const int EquipmentSlots = 12;
         public GameItemCollected[] Equipment = new GameItemCollected[EquipmentSlots];
+        public int[] EquipmentUseOrder = [0, 1, 2, 3];
         public List<GameItemCollected> CollectedItems = new List<GameItemCollected>();
 
         // sound effects that are currently playing
@@ -84,7 +85,7 @@ namespace ProjectZ.InGame.Things
         // dungeon maps
         public Dictionary<string, MiniMap> DungeonMaps = new Dictionary<string, MiniMap>();
 
-        public Dictionary<Type, GameSystem> GameSystems = new Dictionary<Type, GameSystem>();
+        public Dictionary<Type, GameSystem> GameSystems = new();
 
         public Point PlayerDungeonPosition;
 
@@ -1401,6 +1402,26 @@ namespace ProjectZ.InGame.Things
         public void SetEquipment(int index, GameItemCollected item)
         {
             Equipment[index] = item;
+
+            // Sort equipment so weapons can override held shield when inputs are processed
+            var shields = new List<int>();
+            var weapons = new List<int>();
+            var remains = new List<int>();
+
+            for (int i = 0; i < Values.HandItemSlots; i++)
+            {
+                if (Equipment[i] == null)
+                    remains.Add(i);
+                else if (Equipment[i].Name == "sword1" || Equipment[i].Name == "sword2" || Equipment[i].Name == "boomerang" || Equipment[i].Name == "hookshot")
+                    weapons.Add(i);
+                else if (Equipment[i].Name == "shield" || Equipment[i].Name == "mirrorShield")
+                    shields.Add(i);
+                else
+                    remains.Add(i);
+            }
+
+            EquipmentUseOrder = [.. remains, .. weapons, .. shields];
+
             UpdateEquipment();
         }
 
