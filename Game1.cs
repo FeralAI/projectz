@@ -330,7 +330,8 @@ namespace ProjectZ
             UpdateConsoleInput();
 
             // SetTransparency _fpsCounter counter
-            _fpsCounter.Update(gameTime);
+            if (ShowDebugText)
+                _fpsCounter.Update(gameTime);
 
             // toggle fullscreen
             if (InputHandler.KeyDown(Keys.LeftAlt) && InputHandler.KeyPressed(Keys.Enter))
@@ -429,7 +430,7 @@ namespace ProjectZ
             if (!DebugStepper || InputHandler.KeyPressed(Keys.M))
                 ScreenManager.Update(gameTime);
 
-            if (_finishedLoading)
+            if (ShowDebugText && _finishedLoading)
             {
                 DebugText += _fpsCounter.Msg;
 
