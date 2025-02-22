@@ -18,7 +18,7 @@ namespace ProjectZ.InGame.Things
         public static bool SmoothCamera = true;
         
         public static bool BorderlessWindowed = false;
-        public static bool IsFullscreen = false;
+        public static bool IsFullscreen = true;
 
         public static int DamageMultiplier = 1;
         public static bool NoHeartDrops = false;
