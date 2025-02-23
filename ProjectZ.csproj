@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
-		<Version>1.1.0-alpha.1</Version>
+		<Version>1.1.0-DC</Version>
 		<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 		<LangVersion>12.0</LangVersion>
 		<PublishReadyToRun>false</PublishReadyToRun>
@@ -11,6 +11,7 @@
 		<UseWindowsForms>false</UseWindowsForms>
 		<MonoGamePlatform>Windows</MonoGamePlatform>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+		<IsRedux>false</IsRedux>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<OutputPath></OutputPath>
@@ -37,6 +38,9 @@
 	<ItemGroup>
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
 	</ItemGroup>
+	<PropertyGroup>
+		<MonoGameMGCBAdditionalArguments>/quiet /define:redux=$(IsRedux)</MonoGameMGCBAdditionalArguments>
+	</PropertyGroup>
 	<ItemGroup>
 		<MonoGameContentReference Include="Content\Content.mgcb" />
 	</ItemGroup>
