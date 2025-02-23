@@ -16,6 +16,7 @@ namespace ProjectZ.InGame.Things
         public static bool LockFps = true;
         public static bool Autosave = true;
         public static bool SmoothCamera = true;
+        public static bool ScreenShake = true;
         
         public static bool BorderlessWindowed = false;
         public static bool IsFullscreen = true;

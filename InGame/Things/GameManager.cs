@@ -1022,8 +1022,24 @@ namespace ProjectZ.InGame.Things
             return false;
         }
 
+        public void ResetScreenShake()
+        {
+            _shakeCountX = 0;
+            _shakeCountY = 0;
+            _shakeSpeedX = 0;
+            _shakeSpeedY = 0;
+            _maxOffsetX = 0;
+            _maxOffsetY = 0;
+
+            MapManager.Camera.ShakeOffsetX = 0;
+            MapManager.Camera.ShakeOffsetY = 0;
+        }
+
         public void ShakeScreenContinue(int time, int maxX, int maxY, float shakeSpeedX, float shakeSpeedY)
         {
+            if (!GameSettings.ScreenShake)
+                return;
+
             var periodsX = (_shakeCountX / 100f * _shakeSpeedX) % (MathF.PI * 2);
             _shakeCountX = time;
             if (_shakeSpeedX > 0)
@@ -1038,6 +1054,9 @@ namespace ProjectZ.InGame.Things
 
         public void ShakeScreen(int time, int maxX, int maxY, float shakeSpeedX, float shakeSpeedY, int startDirX = 1, int startDirY = 1)
         {
+            if (!GameSettings.ScreenShake)
+                return;
+
             _shakeCountX = time;
             _shakeCountY = time;
             _maxOffsetX = maxX;
@@ -1066,6 +1085,9 @@ namespace ProjectZ.InGame.Things
 
         public void UpdateShake()
         {
+            if (!GameSettings.ScreenShake)
+                return;
+
             if (_shakeCountX > 0)
             {
                 _shakeCountX -= Game1.DeltaTime;

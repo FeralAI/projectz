@@ -39,11 +39,8 @@ namespace ProjectZ.InGame.Pages
                 "settings_game_items_on_right", GameSettings.ItemsOnRight, newState => { GameSettings.ItemsOnRight = newState; });
             contentLayout.AddElement(toggleItemSlotSide);
 
-            var swapButtons = InterfaceToggle.GetToggleButton(
-                new Point(buttonWidth, 18),
-                new Point(5, 2),
-                "settings_game_swap_buttons",
-                GameSettings.SwapButtons,
+            var toggleSwapButtons = InterfaceToggle.GetToggleButton(
+                new Point(buttonWidth, 18), new Point(5, 2), "settings_game_swap_buttons", GameSettings.SwapButtons,
                 newState =>
                 {
                     _nextControlCheck = DateTime.Now.AddMilliseconds(500); // Small delay to prevent menu close on change
@@ -53,7 +50,17 @@ namespace ProjectZ.InGame.Pages
                     Game1.UiPageManager.UpdateControlSettingsPage();
                 }
             );
-            contentLayout.AddElement(swapButtons);
+            contentLayout.AddElement(toggleSwapButtons);
+
+            var toggleScreenShake = InterfaceToggle.GetToggleButton(
+                new Point(buttonWidth, 18), new Point(5, 2), "settings_game_screen_shake", GameSettings.ScreenShake,
+                newState =>
+                {
+                    GameSettings.ScreenShake = newState;
+                    Game1.GameManager.ResetScreenShake();
+                }
+            );
+            contentLayout.AddElement(toggleScreenShake);
 
             gameSettingsList.AddElement(contentLayout);
 

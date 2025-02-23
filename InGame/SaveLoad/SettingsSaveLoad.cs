@@ -40,6 +40,7 @@ namespace ProjectZ.InGame.SaveLoad
             GameSettings.SwapButtons = saveManager.GetBool("SwapButtons", GameSettings.SwapButtons);
             GameSettings.ShadowOpacity = saveManager.GetFloat("ShadowOpacity", GameSettings.ShadowOpacity);
             GameSettings.FontName = saveManager.GetString("FontName", GameSettings.FontName);
+            GameSettings.ScreenShake = saveManager.GetBool("ScreenShake", GameSettings.ScreenShake);
 
             Values.ControllerDeadzone = saveManager.GetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             Game1.LanguageManager.CurrentLanguageIndex = saveManager.GetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);
@@ -73,6 +74,7 @@ namespace ProjectZ.InGame.SaveLoad
             saveManager.SetBool("SwapButtons", GameSettings.SwapButtons);
             saveManager.SetFloat("ShadowOpacity", GameSettings.ShadowOpacity);
             saveManager.SetString("FontName", GameSettings.FontName);
+            saveManager.SetBool("ScreenShake", GameSettings.ScreenShake);
 
             saveManager.SetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             saveManager.SetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);
