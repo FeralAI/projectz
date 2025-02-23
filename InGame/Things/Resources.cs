@@ -22,18 +22,6 @@ namespace ProjectZ.InGame.Things
             }
         }
 
-        public static readonly Dictionary<SpriteFontName, string> GameFontNames = new()
-        {
-            { SpriteFontName.smallFont, "Original" },
-            { SpriteFontName.smallFontOld, "Monospace" },
-        };
-
-        public enum SpriteFontName
-        {
-            smallFont,
-            smallFontOld,
-        }
-
         public static Effect RoundedCornerEffect;
 
         public static Effect BlurEffect;
@@ -66,7 +54,7 @@ namespace ProjectZ.InGame.Things
 
         public static SpriteFont EditorFont, EditorFontMonoSpace, EditorFontSmallMonoSpace;
         public static SpriteFont GameFont, GameHeaderFont;
-        public static Dictionary<SpriteFontName, SpriteFont> GameFonts = [];
+        public static Dictionary<string, SpriteFont> GameFonts = [];
         public static SpriteFont FontCredits, FontCreditsHeader;
 
         public static Texture2D EditorEyeOpen, EditorEyeClosed, EditorIconDelete;
@@ -352,11 +340,14 @@ namespace ProjectZ.InGame.Things
 
         public static void LoadGameFonts(ContentManager content)
         {
-            var fontList = GameFontNames.Keys.ToList();
+            // Find all font files, prefixed with "smallFont"
+            var fontList = Directory.GetFiles("Content/Fonts", "smallFont*.xnb")
+                .Select(p => p.Substring(p.IndexOf("smallFont")).Replace(".xnb", ""))
+                .ToList();
 
             for (int i = 0; i < fontList.Count; i++)
             {
-                SpriteFontName fontName = fontList[i];
+                string fontName = fontList[i];
                 SpriteFont tempSF = content.Load<SpriteFont>($"Fonts/{fontName}");
                 tempSF.LineSpacing = GameFontHeight;
                 GameFonts.Add(fontName, tempSF);
@@ -368,9 +359,17 @@ namespace ProjectZ.InGame.Things
             }
         }
 
-        public static void SetGameFont(SpriteFontName fontName)
+        public static string GetFontDisplayName(string fontName)
         {
-            GameFont = GameFonts.GetValueOrDefault(fontName);
+            if (fontName == "smallFont")
+                return "Original";
+
+            return fontName.Replace("smallFont", "");
+        }
+
+        public static void SetGameFont(string fontName)
+        {
+            GameFont = GameFonts.GetValueOrDefault(fontName) ?? GameFonts["smallFont"];
         }
     }
 }

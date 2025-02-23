@@ -142,6 +142,16 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/smallFontOld.png
 
+$if redux=true
+#begin Fonts/smallFontRedux.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/smallFontRedux.png
+$endif
+
 #begin Light/doorLight.png
 /importer:TextureImporter
 /processor:TextureProcessor

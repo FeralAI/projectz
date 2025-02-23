@@ -9,7 +9,7 @@ namespace ProjectZ.InGame.Things
 
         public static bool ItemsOnRight = false;
         public static bool SwapButtons = false;
-        public static Resources.SpriteFontName FontName = Resources.SpriteFontName.smallFont;
+        public static string FontName = "smallFont";
 
         public static bool EnableShadows = true;
         public static float ShadowOpacity = 0.55f;

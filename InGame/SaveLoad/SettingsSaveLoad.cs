@@ -39,9 +39,7 @@ namespace ProjectZ.InGame.SaveLoad
             GameSettings.WalkSpeed = saveManager.GetFloat("WalkSpeed", GameSettings.WalkSpeed);
             GameSettings.SwapButtons = saveManager.GetBool("SwapButtons", GameSettings.SwapButtons);
             GameSettings.ShadowOpacity = saveManager.GetFloat("ShadowOpacity", GameSettings.ShadowOpacity);
-
-            string dialogFontNameStr = saveManager.GetString("FontName", Resources.SpriteFontName.smallFont.ToString());
-            GameSettings.FontName = Enum.Parse<Resources.SpriteFontName>(dialogFontNameStr);
+            GameSettings.FontName = saveManager.GetString("FontName", GameSettings.FontName);
 
             Values.ControllerDeadzone = saveManager.GetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             Game1.LanguageManager.CurrentLanguageIndex = saveManager.GetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);
@@ -74,8 +72,7 @@ namespace ProjectZ.InGame.SaveLoad
             saveManager.SetFloat("WalkSpeed", GameSettings.WalkSpeed);
             saveManager.SetBool("SwapButtons", GameSettings.SwapButtons);
             saveManager.SetFloat("ShadowOpacity", GameSettings.ShadowOpacity);
-
-            saveManager.SetString("FontName", GameSettings.FontName.ToString());
+            saveManager.SetString("FontName", GameSettings.FontName);
 
             saveManager.SetFloat("ControllerDeadzone", Values.ControllerDeadzone);
             saveManager.SetInt("CurrentLanguage", Game1.LanguageManager.CurrentLanguageIndex);

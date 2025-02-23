@@ -28,7 +28,7 @@ namespace ProjectZ.InGame.Pages
             contentLayout.AddElement(new InterfaceButton(new Point(buttonWidth, 18), new Point(0, 2), "settings_game_language", PressButtonLanguageChange));
 
             var fontSelect = new InterfaceButton(new Point(buttonWidth, 18), new Point(0, 2),
-                $"settings_game_dialog_font|: {Resources.GameFontNames[GameSettings.FontName]}", PressButtonDialogFontChange);
+                $"settings_game_dialog_font|: {Resources.GetFontDisplayName(GameSettings.FontName)}", PressButtonDialogFontChange);
             contentLayout.AddElement(fontSelect);
 
             var toggleAutosave = InterfaceToggle.GetToggleButton(new Point(buttonWidth, 18), new Point(5, 2),
@@ -96,9 +96,9 @@ namespace ProjectZ.InGame.Pages
 
         public void PressButtonDialogFontChange(InterfaceElement element)
         {
-            var fontList = Resources.GameFontNames.Keys.ToList();
+            var fontList = Resources.GameFonts.Keys.ToList();
             int index = fontList.IndexOf(GameSettings.FontName);
-            index = ++index % Resources.GameFontNames.Count;
+            index = ++index % Resources.GameFonts.Count;
 
             GameSettings.FontName = fontList[index];
             Resources.SetGameFont(GameSettings.FontName);
