@@ -1,9 +1,8 @@
-# Link's Awakening DX HD - Developer's Cut
+# ProjectZ
 
-This is the source code for ProjectZ, a fan-made PC port of the Game Boy Color game **The Legend of Zelda, Link's Awakening DX**.
+This is the source code for ProjectZ, a fan-made PC remake of the **The Legend of Zelda, Link's Awakening DX** for Game Boy Color.
 
 *Only* the source code is present — any copyrighted assets (sprite sheets, sound effects etc.) must be provided by the user.
-
 
 ## Requirements
 

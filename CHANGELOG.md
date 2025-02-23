@@ -22,7 +22,7 @@
 
 ## v1.0.2 (a.k.a. Redux patch)
 
-This is a version that I found in a few forms across a few repositories which already had some of the changes from [v1.0.1](#v101-unreleased). The full history of these changes is a little unclear.
+This is a version that I found in a few forms across a few repositories which already had some of the changes from [v1.0.x](#v10x-unreleased). The full history of these changes is a little unclear.
 If you contributed any changes in this version please create an issue or submit a pull request with an update.
 
 ### Enhancements
@@ -40,7 +40,7 @@ If you contributed any changes in this version please create an issue or submit 
 
 > NOTE: Not included are several asset updates that brought more color variation to the game. These are not required to run, but are easy to find with a little digging.
 
-## v1.0.1 (unreleased)
+## v1.0.x (unreleased)
 
 These are changes up to commit [7848c95
 ](https://github.com/ladxhd/projectz/commit/7848c9570b089fd01fa06d812b996f4e32f87ec6) from [dev branch](https://github.com/ladxhd/projectz/tree/dev) of the [main projectz](https://github.com/ladxhd/projectz) repo, the staring point for this fork.
