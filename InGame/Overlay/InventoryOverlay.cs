@@ -126,7 +126,7 @@ namespace ProjectZ.InGame.Overlay
                 if (ControlHandler.ButtonPressed((CButtons)((int)CButtons.A * Math.Pow(2, i))))
                 {
                     Game1.GameManager.PlaySoundEffect("D360-19-13");
-                    Game1.GameManager.ChangeItem(i, _selectedItemSlot + Values.HandItemSlots);
+                    Game1.GameManager.ChangeItem(i, _selectedItemSlot + Values.AllHandItemSlots);
                 }
             }
 
@@ -162,7 +162,7 @@ namespace ProjectZ.InGame.Overlay
             }
 
             // update the selected ocarina song
-            var selectedItem = Game1.GameManager.Equipment[Values.HandItemSlots + _selectedItemSlot];
+            var selectedItem = Game1.GameManager.Equipment[Values.AllHandItemSlots + _selectedItemSlot];
             if (selectedItem != null && selectedItem.Name == "ocarina")
             {
                 if ((selectionOffset == -1 || selectionOffset == 1) &&
@@ -261,13 +261,13 @@ namespace ProjectZ.InGame.Overlay
                 DrawBackground(spriteBatch, offset + selectionPosition, new Rectangle(0, 0, _itemRectangleSize.X, _itemRectangleSize.Y));
 
                 // draw the collected items
-                for (var i = 0; i < Game1.GameManager.Equipment.Length - Values.HandItemSlots; i++)
+                for (var i = 0; i < Game1.GameManager.Equipment.Length - Values.AllHandItemSlots; i++)
                 {
                     var slotRectangle = new Rectangle(
                         i % ItemSlotWidth * (_itemRectangleSize.X + _itemRecMargin.X) + _itemRectangleSize.X / 2 - 2,
                         i / ItemSlotWidth * (_itemRectangleSize.Y + _itemRecMargin.Y) + _itemRectangleSize.Y - 8, 4, 2);
 
-                    if (Game1.GameManager.Equipment[Values.HandItemSlots + i] == null)
+                    if (Game1.GameManager.Equipment[Values.AllHandItemSlots + i] == null)
                         DrawBackground(spriteBatch, offset + _equipmentPosition, slotRectangle, 1);
                 }
 
@@ -390,7 +390,7 @@ namespace ProjectZ.InGame.Overlay
         public void DrawEquipment(SpriteBatch spriteBatch, Point drawPosition)
         {
             // draw the collected items
-            for (var i = 0; i < Game1.GameManager.Equipment.Length - Values.HandItemSlots; i++)
+            for (var i = 0; i < Game1.GameManager.Equipment.Length - Values.AllHandItemSlots; i++)
             {
                 var slotRectangle = new Rectangle(
                     i % ItemSlotWidth * (_itemRectangleSize.X + _itemRecMargin.X),
@@ -398,7 +398,7 @@ namespace ProjectZ.InGame.Overlay
                     _itemRectangleSize.X, _itemRectangleSize.Y);
 
                 // draw the item
-                var itemIndex = i + Values.HandItemSlots;
+                var itemIndex = i + Values.AllHandItemSlots;
                 var offsetY = _selectedItemSlot == i ? -1 : 0;
 
                 if (_selectedItemSlot == i &&
@@ -421,7 +421,7 @@ namespace ProjectZ.InGame.Overlay
             }
 
             // draw the ocarina face selection
-            var selectedItem = Game1.GameManager.Equipment[4 + _selectedItemSlot];
+            var selectedItem = Game1.GameManager.Equipment[Values.AllHandItemSlots + _selectedItemSlot];
             if (selectedItem != null && selectedItem.Name == "ocarina")
             {
                 var selectedSong = Game1.GameManager.SelectedOcarinaSong;

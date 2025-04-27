@@ -5,7 +5,7 @@ namespace ProjectZ.InGame.Things
 {
     public partial class Values
     {
-        public static string VersionString = "v1.0.2";
+        public static string VersionString = "v1.1.1-DC";
 
         public static Color ColorBackgroundLight = Color.Black * 0.8f;
         public static Color ColorBackgroundDark = Color.Black * 0.85f;
@@ -97,7 +97,11 @@ namespace ProjectZ.InGame.Things
         public static int LightLayer2 = 2;  // dark room
         public static int LightLayer3 = 3;
 
-        public static int HandItemSlots = 4;
+        private static readonly int HandItemSlots = 4;
+        private static readonly int HiddenHandItemSlots = 2;
+        public static int AllHandItemSlots = HandItemSlots + HiddenHandItemSlots;
+        public static int HiddenHandBootsSlot = 4; // Hidden equipment index
+        public static int HiddenHandShieldSlot = 5; // Hidden equipment index
 
         public static int MinWidth = 160 * 2 + 60;   // 160
         public static int MinHeight = 128 * 2;  // 128

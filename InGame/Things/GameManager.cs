@@ -75,9 +75,9 @@ namespace ProjectZ.InGame.Things
         public float ForestColorState;
         public bool UseShockEffect;
 
-        public const int EquipmentSlots = 12;
+        public const int EquipmentSlots = 14; // 4 action slots, 2 hidden for bumper actions, 8 for inventory
         public GameItemCollected[] Equipment = new GameItemCollected[EquipmentSlots];
-        public int[] EquipmentUseOrder = [0, 1, 2, 3];
+        public int[] EquipmentUseOrder = [0, 1, 2, 3, 4, 5]; // 4 action slots, 2 hidden for bumper actions
         public List<GameItemCollected> CollectedItems = new List<GameItemCollected>();
 
         // sound effects that are currently playing
@@ -1358,6 +1358,9 @@ namespace ProjectZ.InGame.Things
         {
             for (var i = 0; i < Equipment.Length; i++)
             {
+                if (i == Values.HiddenHandBootsSlot || i == Values.HiddenHandShieldSlot)
+                    continue;
+
                 if (Equipment[i] != null && Equipment[i].Name == itemName)
                     return i;
             }
@@ -1427,12 +1430,18 @@ namespace ProjectZ.InGame.Things
         {
             Equipment[index] = item;
 
+            // Check set for hidden slots
+            if (item.Name == "pegasusBoots")
+                Equipment[Values.HiddenHandBootsSlot] = item;
+            else if (item.Name == "shield" || item.Name == "mirrorShield")
+                Equipment[Values.HiddenHandShieldSlot] = item;
+
             // Sort equipment so weapons can override held shield when inputs are processed
             var shields = new List<int>();
             var weapons = new List<int>();
             var remains = new List<int>();
 
-            for (int i = 0; i < Values.HandItemSlots; i++)
+            for (int i = 0; i < Values.AllHandItemSlots; i++)
             {
                 if (Equipment[i] == null)
                     remains.Add(i);
@@ -1455,7 +1464,7 @@ namespace ProjectZ.InGame.Things
             MapManager.ObjLink.CarrySword = false;
             MapManager.ObjLink.CarryShield = false;
 
-            for (var i = 0; i < Values.HandItemSlots; i++)
+            for (var i = 0; i < Values.AllHandItemSlots; i++)
             {
                 if (Equipment[i]?.Name == "sword1" || Equipment[i]?.Name == "sword2")
                     MapManager.ObjLink.CarrySword = true;

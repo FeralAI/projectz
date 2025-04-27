@@ -21,4 +21,16 @@ namespace ProjectZ.InGame.Controls
         LT = 4096,
         RT = 8192,
     }
+
+    public static class CButtonsValues
+    {
+        public static readonly CButtons[] ActionButtons = {
+            CButtons.A,
+            CButtons.B,
+            CButtons.X,
+            CButtons.Y,
+            CButtons.L,
+            CButtons.R,
+        };
+    }
 }

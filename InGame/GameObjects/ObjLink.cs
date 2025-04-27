@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Xna.Framework;
@@ -2375,7 +2375,9 @@ namespace ProjectZ.InGame.GameObjects
                     (ControlHandler.ButtonPressed(CButtons.A) ||
                      ControlHandler.ButtonPressed(CButtons.B) ||
                      ControlHandler.ButtonPressed(CButtons.X) ||
-                     ControlHandler.ButtonPressed(CButtons.Y)))
+                     ControlHandler.ButtonPressed(CButtons.Y) ||
+                     ControlHandler.ButtonPressed(CButtons.L) ||
+                     ControlHandler.ButtonPressed(CButtons.R)))
                 {
                     _trapInteractionCount--;
                     if (_trapInteractionCount <= 0)
@@ -2385,18 +2387,20 @@ namespace ProjectZ.InGame.GameObjects
                 // use/hold item
                 if (!DisableItems && (!_isTrapped || !_trappedDisableItems))
                 {
-                    for (var i = 0; i < Values.HandItemSlots; i++)
+                    for (var i = 0; i < Values.AllHandItemSlots; i++)
                     {
                         _itemIndex = Game1.GameManager.EquipmentUseOrder[i];
 
-                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonPressed((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))))
+                        CButtons button = CButtonsValues.ActionButtons[_itemIndex];
+
+                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonPressed(button))
                             UseItem(Game1.GameManager.Equipment[_itemIndex]);
 
-                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))))
-                            HoldItem(Game1.GameManager.Equipment[_itemIndex], ControlHandler.LastButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))));
+                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonDown(button))
+                            HoldItem(Game1.GameManager.Equipment[_itemIndex], ControlHandler.LastButtonDown(button));
 
-                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonReleased((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))))
-                            ReleasedItemButton(Game1.GameManager.Equipment[_itemIndex], ControlHandler.LastButtonDown((CButtons)((int)CButtons.A * Math.Pow(2, _itemIndex))));
+                        if (Game1.GameManager.Equipment[_itemIndex] != null && ControlHandler.ButtonReleased(button))
+                            ReleasedItemButton(Game1.GameManager.Equipment[_itemIndex], ControlHandler.LastButtonDown(button));
                     }
                 }
             }
