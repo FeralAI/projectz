@@ -142,9 +142,9 @@ namespace ProjectZ.InGame.Overlay
                 ToggleState(MenuState.Inventory);
 
             // toggle map scale
-            if (_currentMenuState == MenuState.None && ControlHandler.ButtonPressed(CButtons.L))
+            if (_currentMenuState == MenuState.None && ControlHandler.ButtonPressed(CButtons.LT))
                 UpdateGameScale(GameScaleDirection.Smaller);
-            if (_currentMenuState == MenuState.None && ControlHandler.ButtonPressed(CButtons.R))
+            if (_currentMenuState == MenuState.None && ControlHandler.ButtonPressed(CButtons.RT))
                 UpdateGameScale(GameScaleDirection.Bigger);
 
             if (_currentMenuState == MenuState.None)

@@ -40,10 +40,12 @@ namespace ProjectZ.InGame.Controls
             ButtonDictionary.Add(CButtons.B, new ButtonMapper(new[] { Keys.D }, new[] { Buttons.B }));
             ButtonDictionary.Add(CButtons.X, new ButtonMapper(new[] { Keys.A }, new[] { Buttons.X }));
             ButtonDictionary.Add(CButtons.Y, new ButtonMapper(new[] { Keys.W }, new[] { Buttons.Y }));
-            ButtonDictionary.Add(CButtons.Select, new ButtonMapper(new[] { Keys.Space }, new[] { Buttons.Back }));
+            ButtonDictionary.Add(CButtons.Select, new ButtonMapper(new[] { Keys.Tab }, new[] { Buttons.Back }));
             ButtonDictionary.Add(CButtons.Start, new ButtonMapper(new[] { Keys.Enter }, new[] { Buttons.Start }));
-            ButtonDictionary.Add(CButtons.L, new ButtonMapper(new[] { Keys.OemMinus }, new[] { Buttons.LeftShoulder }));
-            ButtonDictionary.Add(CButtons.R, new ButtonMapper(new[] { Keys.OemPlus }, new[] { Buttons.RightShoulder }));
+            ButtonDictionary.Add(CButtons.L, new ButtonMapper(new[] { Keys.LeftShift }, new[] { Buttons.LeftShoulder }));
+            ButtonDictionary.Add(CButtons.R, new ButtonMapper(new[] { Keys.Space }, new[] { Buttons.RightShoulder }));
+            ButtonDictionary.Add(CButtons.LT, new ButtonMapper(new[] { Keys.OemMinus }, new[] { Buttons.LeftTrigger }));
+            ButtonDictionary.Add(CButtons.RT, new ButtonMapper(new[] { Keys.OemPlus }, new[] { Buttons.RightTrigger }));
 
             SetConfirmCancelButtons();
         }

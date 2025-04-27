@@ -35,24 +35,6 @@ namespace ProjectZ.InGame.Pages
                 Game1.UiPageManager.ChangePage(typeof(GameSettingsPage));
             }));
 
-            // modifier settings button
-            contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_modifier", element =>
-            {
-                Game1.UiPageManager.ChangePage(typeof(ModifierSettingsPage));
-            }));
-
-            // audio settings button
-            contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_audio", element =>
-            {
-                Game1.UiPageManager.ChangePage(typeof(AudioSettingsPage));
-            }));
-
-            // controll settings button
-            contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_controls", element =>
-            {
-                Game1.UiPageManager.ChangePage(typeof(ControlSettingsPage));
-            }));
-
             // graphic settings button
             contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_video", element =>
             {
@@ -60,6 +42,24 @@ namespace ProjectZ.InGame.Pages
             }));
 
             settingsLayout.AddElement(contentLayout);
+
+            // audio settings button
+            contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_audio", element =>
+            {
+                Game1.UiPageManager.ChangePage(typeof(AudioSettingsPage));
+            }));
+
+            // modifier settings button
+            contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_modifier", element =>
+            {
+                Game1.UiPageManager.ChangePage(typeof(ModifierSettingsPage));
+            }));
+
+            // controll settings button
+            contentLayout.AddElement(new InterfaceButton(new Point(150, 25), new Point(1, 2), "settings_menu_controls", element =>
+            {
+                Game1.UiPageManager.ChangePage(typeof(ControlSettingsPage));
+            }));
 
             var bottomLayout = new InterfaceListLayout { Size = new Point(width, (int)(height * Values.MenuFooterSize)), Selectable = true };
             // back button

@@ -17,6 +17,8 @@ namespace ProjectZ.InGame.Controls
         Select = 256,
         Start = 512,
         L = 1024,
-        R = 2048
+        R = 2048,
+        LT = 4096,
+        RT = 8192,
     }
 }

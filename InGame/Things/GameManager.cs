@@ -607,6 +607,7 @@ namespace ProjectZ.InGame.Things
 
             Game1.RenderWidth = (int)(Game1.WindowWidth * _scaleMultiplier);
             Game1.RenderHeight = (int)(Game1.WindowHeight * _scaleMultiplier);
+            Game1.ScaleSettingChanged = true;
 
             MapManager.Camera.SetBounds(Game1.RenderWidth, Game1.RenderHeight);
 

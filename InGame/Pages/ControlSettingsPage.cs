@@ -165,12 +165,12 @@ namespace ProjectZ.InGame.Pages
 
                 for (var j = 0; j < bEntry.Value.Keys.Length; j++)
                     str += bEntry.Value.Keys[j];
-                ((InterfaceLabel)_remapButtons[buttonNr].Elements[1]).SetText(str);
+                ((InterfaceLabel)_remapButtons[buttonNr].Elements[1]).SetText(str.Replace("Oem", ""));
 
                 str = " ";
                 for (var j = 0; j < bEntry.Value.Buttons.Length; j++)
                     str += bEntry.Value.Buttons[j];
-                ((InterfaceLabel)_remapButtons[buttonNr].Elements[2]).SetText(str);
+                ((InterfaceLabel)_remapButtons[buttonNr].Elements[2]).SetText(str.Replace("Oem", ""));
 
                 buttonNr++;
             }
