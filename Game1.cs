@@ -904,16 +904,7 @@ namespace ProjectZ
         private void OnUpdateScale()
         {
             // scale of the game
-            //float ratio = WindowWidth / (float)WindowHeight;
-            //if (ratio > 1.5)
-            //{
-            //    ScreenScale = MathHelper.Clamp(Math.Min(WindowWidth / Values.MinWidth, WindowHeight / Values.MinHeight), 1, 25);
-            //}
-            //else
-            //{
-                // rounding up lets narrow aspect ratios to scale 1x more, giving a better fit for UI elements
-                ScreenScale = MathHelper.Clamp((int)Math.Min(Math.Ceiling((float)WindowWidth / Values.MinWidth), Math.Ceiling((float)WindowHeight / Values.MinHeight)), 1, 25);
-            //}
+            ScreenScale = MathHelper.Clamp(Math.Min(WindowWidth / Values.MinWidth, WindowHeight / Values.MinHeight), 1, 25);
 
             // float scale
             gameScale = MathHelper.Clamp(Math.Min(WindowWidth / (float)Values.MinWidth, WindowHeight / (float)Values.MinHeight), 1, 25);
