@@ -1261,8 +1261,7 @@ namespace ProjectZ.InGame.Things
                 else if (itemCollected.Name == "sword2")
                     SwordLevel = 2;
 
-                if (itemCollected.Name == "shield" ||
-                    itemCollected.Name == "mirrorShield")
+                if (itemCollected.Name == "shield" || itemCollected.Name == "mirrorShield")
                     ShieldLevel = item.Level;
                 if (itemCollected.Name == "stonelifter" || itemCollected.Name == "stonelifter2")
                     StoneGrabberLevel = item.Level;
@@ -1279,7 +1278,16 @@ namespace ProjectZ.InGame.Things
                 // search if the player already owns the equipment
                 for (var i = 0; i < Equipment.Length; i++)
                 {
-                    if (Equipment[i] != null && Equipment[i].Name == item.Name)
+                    if (Equipment[i] == null)
+                        continue;
+
+                    string name = Equipment[i].Name;
+
+                    // don't count items that occupy hidden slots
+                    if (name == "shield" || name == "mirrorShield" || name == "pegasusBoots")
+                        continue;
+
+                    if (name == item.Name)
                     {
                         Equipment[i].Count += itemCollected.Count;
 
@@ -1430,11 +1438,38 @@ namespace ProjectZ.InGame.Things
         {
             Equipment[index] = item;
 
-            // Check set for hidden slots
-            if (item.Name == "pegasusBoots")
-                Equipment[Values.HiddenHandBootsSlot] = item;
-            else if (item.Name == "shield" || item.Name == "mirrorShield")
-                Equipment[Values.HiddenHandShieldSlot] = item;
+            UpdateEquipment();
+        }
+
+        private void UpdateEquipment()
+        {
+            // check if link is carrying a shield
+            MapManager.ObjLink.CarrySword = false;
+            MapManager.ObjLink.CarryShield = false;
+
+            for (var i = 0; i < Equipment.Length; i++)
+            {
+                if (Equipment[i] == null)
+                    continue;
+
+                // Check set for hidden slots
+                if (i != Values.HiddenHandBootsSlot && i != Values.HiddenHandShieldSlot)
+                {
+                    if (Equipment[i].Name == "pegasusBoots")
+                        Equipment[Values.HiddenHandBootsSlot] = Equipment[i];
+                    else if (Equipment[i].Name == "shield" || Equipment[i].Name == "mirrorShield")
+                        Equipment[Values.HiddenHandShieldSlot] = Equipment[i];
+                }
+
+                // Check set carry state
+                if (i < Values.AllHandItemSlots)
+                {
+                    if (Equipment[i].Name == "sword1" || Equipment[i].Name == "sword2")
+                        MapManager.ObjLink.CarrySword = true;
+                    else if (Equipment[i].Name == "shield" || Equipment[i].Name == "mirrorShield")
+                        MapManager.ObjLink.CarryShield = true;
+                }
+            }
 
             // Sort equipment so weapons can override held shield when inputs are processed
             var shields = new List<int>();
@@ -1454,23 +1489,6 @@ namespace ProjectZ.InGame.Things
             }
 
             EquipmentUseOrder = [.. remains, .. weapons, .. shields];
-
-            UpdateEquipment();
-        }
-
-        private void UpdateEquipment()
-        {
-            // check if link is carrying a shield
-            MapManager.ObjLink.CarrySword = false;
-            MapManager.ObjLink.CarryShield = false;
-
-            for (var i = 0; i < Values.AllHandItemSlots; i++)
-            {
-                if (Equipment[i]?.Name == "sword1" || Equipment[i]?.Name == "sword2")
-                    MapManager.ObjLink.CarrySword = true;
-                else if (Equipment[i]?.Name == "shield" || Equipment[i]?.Name == "mirrorShield")
-                    MapManager.ObjLink.CarryShield = true;
-            }
         }
 
         public void StartNewGame(int slot, string slotName)

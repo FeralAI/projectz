@@ -172,7 +172,7 @@ namespace ProjectZ.InGame.Overlay
 
             _selectedItemSlot += selectionOffset;
 
-            var slots = GameManager.EquipmentSlots - 4;
+            var slots = GameManager.EquipmentSlots - Values.AllHandItemSlots;
             if (_selectedItemSlot < 0)
                 _selectedItemSlot += slots;
             if (_selectedItemSlot >= slots)
