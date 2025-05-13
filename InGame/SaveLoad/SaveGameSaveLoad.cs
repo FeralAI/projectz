@@ -136,7 +136,7 @@ namespace ProjectZ.InGame.SaveLoad
             for (var i = 0; i < gameManager.Equipment.Length; i++)
             {
                 var strItem = "";
-                if (gameManager.Equipment[i] != null)
+                if (i != Values.HiddenHandBootsSlot && i != Values.HiddenHandShieldSlot && gameManager.Equipment[i] != null)
                     strItem += gameManager.Equipment[i].Name + ":" + gameManager.Equipment[i].Count;
 
                 saveManager.SetString("equipment" + i, strItem);
@@ -244,14 +244,9 @@ namespace ProjectZ.InGame.SaveLoad
             // migrate inventory slots to make room for static equipment (boots, shield) on indexes 4 and 5
             if (!saveManager.ContainsValue("equipment13"))
             {
-                // cache equipment values
-                var eqCache = new Dictionary<int, string>();
-                for (int i = 11; i > 3; i--)
-                    eqCache.Add(i, saveManager.GetString($"equipment{i}"));
-
                 // shift all inventory items 2 spots to compensate for hidden boots and shield slots, starting from the end
                 for (int i = 11; i > 3; i--)
-                    saveManager.SetString($"equipment{i + 2}", eqCache[i]);
+                    saveManager.SetString($"equipment{i + 2}", saveManager.GetString($"equipment{i}"));
 
                 // clear slots 4 and 5
                 saveManager.SetString("equipment4", null);
